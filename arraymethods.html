@@ -1,0 +1,65 @@
+<html>
+<head>
+    <script type = "text/javascript">
+
+       var num = [0, 15, 78, 56, 89, 45, 12, 78];
+       
+       for (let index in num){
+        let val = num [index];
+        if (val > 50)
+        console.log(val);
+       }
+
+       //filter method by Boolean conditions: True; add to array False; reduce
+       //filter method does not change of existing array (line 5), it just creates another array in new_list
+       var new_list = num.filter(obj => obj > 50 && obj < 70);
+       console.log(new_list);
+
+       //Array of Objects
+       let persondetails = [
+        {
+            "name":"test",
+            "age": 15,
+        },
+        {
+            "name":"test 1",
+            "age": 25,
+        },
+        {
+            "name":"test 2",
+            "age": 35, // False, not added (Boolean)
+        },
+        {
+            "name":"test",
+            "age": 45, // False, not added (Boolean)
+        },
+       ];
+
+       persondetails.map (obj => { // if single line, no need curly brace. Only in Multi Line
+        if(obj.age < 30){
+            obj.isAdult = true;
+        }
+        else
+        {
+            obj.isAdult = false;
+        }
+       });
+       console.log(persondetails)
+
+
+
+       var new_list2 = persondetails.filter(obj => obj.age < 30); // obj.age < 30 will be added to new List!
+       console.log(new_list2);
+
+       let new_list3 = persondetails.filter(obj => obj.age < 25); // obj.age < 30 will be added to new List!
+       new_list3.map(obj => obj['adult'] = true);
+       console.log(new_list3);
+
+       //Exact line and logic will be used for React.JS
+
+
+    </script>
+
+</head>
+
+</html>

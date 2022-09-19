@@ -1,0 +1,51 @@
+<html>
+<head>
+
+
+<script = "text/javascript">
+    let d = new Date(); //creates object for dates; go for let if u dont want the let to be overwritten
+    //console.log(d)
+    console.log(d.getFullYear() + "" + d.getDate() + "" + d.getMonth()); // January = 0; December = 11
+    console.log(d.getHours() + "" + d.getMinutes() + "" + d.getSeconds());
+    console.log(d.getDay() + "" + d.getMinutes() + "" + d.getSeconds()); // Sunday = 0; Monday = 6
+
+    setInterval(() => {
+        let d = new Date(); // let d is only confined to this block
+        let hours = d.getHours(); 
+        let mins = d.getMinutes();
+        let seconds = d.getSeconds();
+
+        if (hours < 10){
+            hours = "0" + hours;
+        }
+
+        document.getElementById("time").innerHTML = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+    }, 1000)
+
+    //yyyy mm dd
+    let dd = new Date ("1995-03-10"); // error = let d was not re-declared as it has been declared at line 6
+    let diff = new Date().getTime() - dd.getTime(); //currentdate - DOB
+
+    var age_dt = new Date(diff);
+
+    //Extract year from Date
+    var year = age_dt.getUTCFullYear();
+
+    // Calculate Age of User
+    var age = Math.abs(year - 1970);
+    document.write("Age of the date entered:" + age + "years");
+
+    //console.log("DIFF IS", diff/); // UNIX Timestamp == the entire hours*secs*mins into seconds / Universal to any parts in the world
+    //console.log(d.getTime() - dd.getTime());
+    //console.log(dd);
+</script>
+
+
+</head>
+<body>
+    <h1 id="time"></h1>
+    
+</body>
+
+
+</html>

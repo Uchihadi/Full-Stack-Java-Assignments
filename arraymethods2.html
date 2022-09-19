@@ -1,0 +1,17 @@
+<html>
+    <script type = "text/javascript">
+
+        //push element to array
+        var num = [0, 15, 78, 56];
+        console.log(num); // before mapping
+
+        let update_num = num.map(obj => obj*10);
+        console.log(num, update_num); // before mapping // After Mapping
+
+        //filter number above 20
+        let new_list = num.filter(obj => obj > 20).map(obj => obj * 10);
+        console.log(new_list);
+    </script>
+
+
+</html>
