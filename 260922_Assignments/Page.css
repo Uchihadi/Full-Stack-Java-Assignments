@@ -1,0 +1,141 @@
+h1 {
+    text-align: center;
+    display: block;
+    margin: 5px;
+    padding: 1%;
+}
+
+h2 {
+    text-align: center;
+    margin: 1%;
+    color: darkblue;
+}
+
+h3 {
+    text-align: center;
+}
+
+article{
+    text-align: center;
+    padding: 2%;
+    margin: 2%;
+    font-style: italic;
+    background-color: aquamarine;
+}
+
+.familyName {
+    color: darkblue;
+}
+
+.familyName2 {
+    color: red;
+}   
+
+.FrontPage li{
+    display: inline-block;
+    margin: 2%;
+}
+
+.FrontPage li a:hover {
+    background-color: aquamarine;
+}
+
+.button {
+    appearance: block ;
+    background: aqua;
+    margin: 1%;
+    padding: 1%;;
+    border: 2px;
+    outline: 2px;
+}
+
+.button3 {
+    appearance: block ;
+    background: rgb(10, 236, 17);
+    margin: 1%;
+    padding: 1%;;
+    border: 3px;
+    outline: 3px;
+}
+
+.button2 {
+    appearance: block ;
+    background: rgb(183, 236, 10);
+    margin: 1%;
+    padding: 1%;;
+    border: 3px;
+    outline: 3px;
+}
+
+.text {
+    appearance: block;
+    margin: auto;
+    padding: 1%;;
+    border: 2px;
+    outline: 2px;
+}
+
+.header {
+    background-color: cyan;
+    color: green;
+    margin: 1%;
+    padding: 1%;;
+    border: 3px;
+    outline: 3px;
+}
+
+.header1 {
+    appearance: block ;
+    background-color: rgb(66, 215, 215);
+    color: rgb(173, 8, 11);
+    margin: 1%;
+    padding: 1%;;
+    border: 3px;
+    outline: 3px;
+}
+
+.header2 {
+    appearance: block ;
+    background-color: rgba(204, 255, 0, 0.941);
+    color: rgb(174, 7, 7);
+    margin: 1%;
+    padding: 1%;;
+    border: 3px;
+    outline: 3px;
+}
+
+.header3 {
+    appearance: block ;
+    background-color: rgb(175, 243, 195);
+    color: rgb(53, 11, 192);
+    margin: 1%;
+    padding: 1%;;
+    border: 3px;
+    outline: 3px;
+}
+
+.header4 {
+    background-color: rgb(255, 0, 0);
+    margin: 1%;
+    padding: 1%;;
+    border: 3px;
+    outline: 3px;
+}
+
+.header5 {
+    margin: 1%;
+    padding: 1%;;
+    border: 3px;
+    outline: 3px;
+}
+
+.box {
+    background-color: aquamarine;
+    border: 2px;
+    border-style: dashed;
+}
+
+.Details {
+    font-size: 25px;
+    font-style: italic;
+}
