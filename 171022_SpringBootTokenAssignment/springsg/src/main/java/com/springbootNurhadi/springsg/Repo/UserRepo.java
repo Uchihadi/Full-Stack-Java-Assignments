@@ -20,7 +20,7 @@ public interface UserRepo extends JpaRepository<UserModel,Integer> {
      */
     @Modifying
     @Transactional
-    @Query("update  UserModel  set token = ?1 where id = ?2")
+    @Query("update  UserModel  set token = ?1 gg where id = ?2")
     Integer updateTokenForUserId(String token, Integer userId);
 
     @Query("select user from UserModel user where email = ?1")
