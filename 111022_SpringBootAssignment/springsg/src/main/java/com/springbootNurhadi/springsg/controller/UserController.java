@@ -7,22 +7,23 @@ import com.springbootNurhadi.springsg.model.EmailList;
 import com.springbootNurhadi.springsg.model.UserList;
 import com.springbootNurhadi.springsg.model.UserModel;
 import com.springbootNurhadi.springsg.service.UserService;
-import org.apache.catalina.User;
-import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-// Create an API with 2 Parameters (Email, Password)
-// Email and Password Validation --> Return Success Response / Failure Response
+// 1) Integrate Login API from React
+// 2) Using Path Variable, Create a HashMap <Integer, UserList> --> Return UserDetails from Hashmap using ID (If ID does not exist in Hashmap, throw Error)
+// 3) Create an API with 2 Parameters (Email, Password) with Validation --> Return Success Response / Failure Response
 @RestController
 public class UserController {
 
     // [UserController] Autowired: Creates Object userService from class UserServices in the Spring Boot Application;
     @Autowired
     UserService userService;
+    UserRequest userRequest;
     UserRepo userRepo;
     UserModel userModel;
     UserList userList;
@@ -94,7 +95,7 @@ public class UserController {
     }
 
     @GetMapping("getUsers")
-    public ArrayList<UserList> getUsers() {
+    public ArrayList<UserList> getUserList() {
         UserResponse Response = new UserResponse();
         ArrayList<UserList> UserModelListArray = new ArrayList<UserList>();
         UserList User1 = new UserList("jack.rackham96@gmail.com", "jack.rackham.96", "England");
@@ -115,13 +116,9 @@ public class UserController {
         }
     }
 
-    @GetMapping("user/{user_id}")
-    //GET Request --> localhost:8080/user/55 --> Returns: User ID is 55
-       public ResponseEntity<?> getUser (@PathVariable Integer user_id){
-       UserResponse Response = new UserResponse();
-       Response.setMessage("User ID is " +user_id);
-       return ResponseEntity.ok(Response);
-    }
+
+
+
 
     @PostMapping("user/update/{user_id}")
     // Dynamic Configuration
@@ -138,7 +135,7 @@ public class UserController {
     // Using Request Parameter Annotations to call Strings of Email and Password
     public ResponseEntity<?> login (@RequestBody UserRequest userRequest) {
         UserResponse Response = new UserResponse();
-        ArrayList<UserList> userList = getUsers();
+        ArrayList<UserList> userList = getUserList();
 
         if (userList != null) {
             for (UserList users : userList) {
@@ -154,7 +151,36 @@ public class UserController {
         }
         return null;
     }
-    
+    @GetMapping("userMap")
+    public HashMap<Integer, UserList> getUserMap() {
+        ArrayList <UserList> userList = getUserList();
+        HashMap <Integer, UserList> userListHashMap = new HashMap<>();
+
+        for (int i = 0; i < userList.size(); i++){
+            userListHashMap.put(i+1, userList.get(i));
+        }
+
+        if (userListHashMap.size() > 0) {
+            return userListHashMap;
+        } else {
+            return null;
+        }
+    }
+
+    @GetMapping("user/{user_id}")
+    //GET Request --> localhost:8080/user/55 --> Returns: User ID is 55
+    public ResponseEntity<?> getUser (@PathVariable Integer user_id){
+        UserResponse Response = new UserResponse();
+        HashMap <Integer, UserList> userListHashMap = getUserMap();
+
+        if (userListHashMap.containsKey(user_id)) {
+            Response.setMessage("The User ID is: " +user_id);
+            return ResponseEntity.ok(Response);
+        } else {
+            Response.setMessage("The User ID is Invalid");
+            return ResponseEntity.badRequest().body(Response);
+        }
+    }
     @GetMapping ("getOneUser/{id}")
     public ResponseEntity<?> getOneUser (@PathVariable int id){
         return userService.getOneUser(id);
