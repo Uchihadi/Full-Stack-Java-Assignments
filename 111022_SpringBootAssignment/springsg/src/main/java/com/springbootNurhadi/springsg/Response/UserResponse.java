@@ -1,11 +1,13 @@
 package com.springbootNurhadi.springsg.Response;
 import lombok.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+import javax.persistence.Entity;
 
+//@Getter
+//@Setter
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Entity
 public class UserResponse {
 
     private String email;
