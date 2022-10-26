@@ -2,19 +2,16 @@ package com.springbootNurhadi.springsg.controller;
 
 import com.springbootNurhadi.springsg.Repo.UserRepo;
 import com.springbootNurhadi.springsg.Request.*;
-import com.springbootNurhadi.springsg.Response.GeneralResponse;
 import com.springbootNurhadi.springsg.Response.UserResponse;
 import com.springbootNurhadi.springsg.model.EmailList;
 import com.springbootNurhadi.springsg.model.UserList;
 import com.springbootNurhadi.springsg.model.UserModel;
 import com.springbootNurhadi.springsg.service.UserService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 // Create an API with 2 Parameters (Email, Password)
 // Email and Password Validation --> Return Success Response / Failure Response
@@ -30,14 +27,14 @@ public class UserController {
 
     @GetMapping("user") // http://localhost:8090/user
     public ResponseEntity<?> getUser() {
-        GeneralResponse Response = new GeneralResponse("Hi, How Are You?");
+        UserResponse Response = new UserResponse("Hi, How Are You?");
         return ResponseEntity.ok(Response); //Passing off the Object
     }
 
 
     @GetMapping("message") // http://localhost:8090/message
     public ResponseEntity<?> getMessage() {
-        GeneralResponse Response = new GeneralResponse("Hello World");
+        UserResponse Response = new UserResponse("Hello World");
         Response.setMessage("This is My Message");
         return ResponseEntity.ok(Response); //Passing off the Object
 
@@ -46,7 +43,7 @@ public class UserController {
     @PostMapping("addition")
     public ResponseEntity<?> addition (@RequestBody AdditionRequest additionRequest){
         int plus  = additionRequest.getNum1()+additionRequest.getNum2();
-        GeneralResponse Response = new GeneralResponse();
+        UserResponse Response = new UserResponse();
         Response.setMessage("The result of addition between two numbers are: "+plus);
         return ResponseEntity.ok(Response);
     }
@@ -119,7 +116,7 @@ public class UserController {
     @GetMapping("user/{user_id}")
     //GET Request --> localhost:8080/user/55 --> Returns: User ID is 55
        public ResponseEntity<?> getUser (@PathVariable Integer user_id){
-       GeneralResponse Response = new GeneralResponse();
+       UserResponse Response = new UserResponse();
        Response.setMessage("User ID is " +user_id);
        return ResponseEntity.ok(Response);
     }
@@ -130,7 +127,7 @@ public class UserController {
     // POST Request --> localhost:8080/user/update/45 --> Returns: User ID is 45 update email is email
     public ResponseEntity<?> updateUser (@PathVariable Integer user_id,
                                          @RequestBody UserRequest userRequest){
-        GeneralResponse Response = new GeneralResponse();
+        UserResponse Response = new UserResponse();
         Response.setMessage("User ID is " +user_id+ " update email is " +userRequest.getEmail());
         return ResponseEntity.ok(Response);
     }
@@ -139,7 +136,7 @@ public class UserController {
     // Using Request Parameter Annotations to call Strings of Email and Password
     public ResponseEntity<?> userLogin (@RequestParam String email,
                                         @RequestParam String password){
-        GeneralResponse Response = new GeneralResponse();
+        UserResponse Response = new UserResponse();
 //        Response.setMessage(password + "--" + email);
 //        return ResponseEntity.ok(Response);
 
