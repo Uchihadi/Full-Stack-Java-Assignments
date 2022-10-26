@@ -116,10 +116,6 @@ public class UserController {
         }
     }
 
-
-
-
-
     @PostMapping("user/update/{user_id}")
     // Dynamic Configuration
     // Send raw data --> "email" : "jan@mail.com"
