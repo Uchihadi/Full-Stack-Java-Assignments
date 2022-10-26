@@ -28,30 +28,6 @@ public class UserController {
     UserModel userModel;
     UserList userList;
 
-    @GetMapping("user") // http://localhost:8090/user
-    public ResponseEntity<?> getUser() {
-        UserResponse Response = new UserResponse("Hi, How Are You?");
-        return ResponseEntity.ok(Response); //Passing off the Object
-    }
-
-
-    @GetMapping("message") // http://localhost:8090/message
-    public ResponseEntity<?> getMessage() {
-        UserResponse Response = new UserResponse("Hello World");
-        Response.setMessage("This is My Message");
-        return ResponseEntity.ok(Response); //Passing off the Object
-
-    }
-
-    @PostMapping("addition")
-    public ResponseEntity<?> addition (@RequestBody UserRequest userRequest){
-        int addition  = userRequest.getNum1()+userRequest.getNum2();
-        UserResponse Response = new UserResponse();
-        Response.setMessage("The result of addition between two numbers are: "+addition);
-        return ResponseEntity.ok(Response);
-    }
-
-
     @PostMapping("userLogin")
     public ResponseEntity<?> userLogin (@RequestBody UserRequest userRequest){
         ArrayList<EmailList> EmailListArray = new ArrayList<EmailList>();
@@ -178,7 +154,7 @@ public class UserController {
         }
     }
     @GetMapping ("getOneUser/{id}")
-    public ResponseEntity<?> getOneUser (@PathVariable int id){
+    public ResponseEntity<?> getOneUser (@PathVariable Integer id){
         return userService.getOneUser(id);
     }
 }

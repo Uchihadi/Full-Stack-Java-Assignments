@@ -12,5 +12,5 @@ public class CommonConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) { //Adding Cross Origin Requests
         registry.addMapping("/**").allowedOrigins("http://localhost:3000");
         // Path Pattern can be anywhere
-    }   // Cors Mapping Cors Configuration allows different locations to work together
+    }   // Cors Mapping Configuration allows different locations to work together
 }
