@@ -1,0 +1,168 @@
+<html>
+<head>
+    <style>
+        h1 {
+            border: dashed;
+            background-color: springgreen;
+            text-align: center;
+        }
+
+        h2 {
+            color: blue;
+            text-decoration: line-through;
+        }
+
+        #p1 {
+            border: dotted;
+            background-color: aquamarine;
+            text-align: center;
+        }
+
+        .Div1 {
+            border: dotted;
+            background-color: aquamarine;
+            text-align: center;
+        }
+
+        h4 {
+            display: inline-block;
+            text-decoration: overline;
+        }
+
+        h5 {
+            position: static;
+            border: 3px solid #73AD21;
+            text-decoration: underline;
+        }
+
+        #Div2 {
+            border: 1px solid black;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+            margin-left: 10px;
+            background-color: mediumaquamarine;
+        }
+
+        #Name1 {
+            height: 50px;
+            width: 100px;
+        }
+
+        #date {
+            height: 50px;
+            width: 100px;
+        }
+
+        table, th, td {
+            border: 2px solid black;
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            text-decoration: underline overline;
+        }
+
+        video {
+            float: right;
+        }
+
+    </style>
+    <title>
+        Sample Title
+    </title>
+</head>
+<body>
+    <h1> Self-Introduction </h1>
+    <section>
+        <h2> About me </h2>
+        <p>My name is Nurhadi. I am currently 26 years old this year. I like to watch exciting sports such as UFC and Football. My favourite football team is West Ham United.</p>
+    </section>
+
+    <div class="1stDiv">
+        <h3> My Education </h3>
+        <p> I graduated from Nanyang Technological University in 2022. Prior to studying in NTU, I graduated from Ngee Ann Polytechnic in 2016. </p>
+    </div>
+
+    <h4> My Favourite Colour </h4>
+    <p>
+        My favourite colour is <span style="color:aqua; font-weight:bold"> Aqua. </span> My Second Favourite Colour is <span style="color:brown; font-weight:bold"> Brown. </span>
+    </p>
+
+    <h5>My Free Time</h5>
+    <p> My hobbies includes <s> sleeping </s> <ins> volunteering </ins>!</p>
+
+    <h6>Input your details here for a coffee session with me</h6>
+    <form>
+        <p>
+            <label for="fname">Name:</label>
+            <input type="text" id="fname" name="fname"><br>
+            Coffee?
+            <input type="radio" /> Yes Coffee
+            <input type="radio" /> No, I would like Tea Instead<br />
+            Type of Coffee?
+            <input type="checkbox" /> Caramel Latte
+            <input type="checkbox" /> Hazelnut Latte
+            <input type="checkbox" /> Caramel Macchiato
+            <input type="checkbox" /> Mocha <br />
+            <label for="date">Let me know your date of availability:</label>
+            <input type="datetime" id="date" name="date" />
+        </p>
+        <button type="submit"> Let's go for Coffee! </button>
+        <input type="reset" value="Clear"> <br />
+
+        <label for="hangout">Choose your favourite place for hangout:</label> <br /> <br />
+
+        <select name="hangout" id="hangout">
+            <option value="OrchardRoad">Orchard Road</option>
+            <option value="ClarkeQuay">Clarke Quay</option>
+            <option value="BukitTimah">Bukit Timah</option>
+        </select>
+
+        <table style="width:70%">
+            <tr>
+                <th>Places</th>
+                <th>Restaurants</th>
+                <th>Sightseeing</th>
+            </tr>
+            <tr>
+                <td>Orchard Road</td>
+                <td>Hans Im Gluck</td>
+                <td>Royal Thai Embassy</td>
+            </tr>
+            <tr>
+                <td>Clarke Quay</td>
+                <td>Zouk</td>
+                <td>Singapore River</td>
+            </tr>
+            <tr>
+                <td>Bukit Timah</td>
+                <td>Railway Mall</td>
+                <td>Bukit Timah Hill</td>
+            </tr>
+        </table>
+    </form>
+
+    <a href="https://www.linkedin.com/in/hadirahman96/" target="_blank"> Click here to go to my LinkedIn Profile </a> <br /><br />
+</body>
+
+<audio controls autoplay>
+    <source src="flashlight.ogg" type="audio/ogg">
+    <source src="flashlight.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<video width="320" height="240" controls>
+    <source src="ord.mp4" type="video/mp4">
+    <source src="ord.ogg" type="video/ogg">
+    Your browser does not support the video tag.
+</video>
+
+<iframe frameborder="1" width="420" height="345" src="//www.youtube.com/embed/C8kSrkz8Hz8"></iframe>
+
+<footer>
+    <p>If there are any queries you may send your enquiries to my email:</p>
+    <a href="mailto: leo.hadi.rahman@gmail.com" target="_blank"> My Personal Email Address </a>
+</footer>
+
+</html>

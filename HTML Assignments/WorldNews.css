@@ -1,0 +1,88 @@
+﻿h1 {
+    border: groove;
+    background-color: aqua;
+    text-align: center;
+    font-style: italic;
+}
+
+h2 {
+    color: blue;
+    text-decoration:underline;
+}
+
+#p1 {
+    border: dotted;
+    background-color: aquamarine;
+    text-align: center;
+}
+
+.Div1 {
+    border: dotted;
+    background-color: aquamarine;
+    text-align: center;
+}
+
+h5 {
+    display: inline-block;
+    text-decoration: overline;
+}
+
+h4 {
+    position: static;
+    border: 3px solid #73AD21;
+    text-decoration: underline;
+    text-align: center;
+}
+
+img {
+    height: 600px;
+    width: 1000px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 70px;
+}
+
+#Div2 {
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: mediumaquamarine;
+}
+
+#Name1 {
+    height: 50px;
+    width: 100px;
+}
+
+#date {
+    height: 50px;
+    width: 100px;
+}
+
+table, th, td {
+    border: 2px solid black;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    text-decoration: underline overline;
+}
+
+video {
+    float: right;
+}
+
+footer {
+    width: 100%;
+    bottom: 0px;
+    background-color: aquamarine;
+    color: aquamarine;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
