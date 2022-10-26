@@ -12,9 +12,9 @@ public class UserResponse {
     String email;
     String name;
     Integer id;
-    String Message;
+    String message;
 
-    public UserResponse(String Message){ //POJO Class Message
-        this.Message = Message;
+    public UserResponse(String message){ //POJO Class Message
+        this.message = message;
     }
 }

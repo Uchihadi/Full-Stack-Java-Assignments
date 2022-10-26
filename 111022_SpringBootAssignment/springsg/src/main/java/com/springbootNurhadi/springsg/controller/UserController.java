@@ -7,6 +7,8 @@ import com.springbootNurhadi.springsg.model.EmailList;
 import com.springbootNurhadi.springsg.model.UserList;
 import com.springbootNurhadi.springsg.model.UserModel;
 import com.springbootNurhadi.springsg.service.UserService;
+import org.apache.catalina.User;
+import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,10 +43,10 @@ public class UserController {
     }
 
     @PostMapping("addition")
-    public ResponseEntity<?> addition (@RequestBody AdditionRequest additionRequest){
-        int plus  = additionRequest.getNum1()+additionRequest.getNum2();
+    public ResponseEntity<?> addition (@RequestBody UserRequest userRequest){
+        int addition  = userRequest.getNum1()+userRequest.getNum2();
         UserResponse Response = new UserResponse();
-        Response.setMessage("The result of addition between two numbers are: "+plus);
+        Response.setMessage("The result of addition between two numbers are: "+addition);
         return ResponseEntity.ok(Response);
     }
 
@@ -132,23 +134,27 @@ public class UserController {
         return ResponseEntity.ok(Response);
     }
 
-    @PostMapping ("userLoginParam")
+    @PostMapping ("Login")
     // Using Request Parameter Annotations to call Strings of Email and Password
-    public ResponseEntity<?> userLogin (@RequestParam String email,
-                                        @RequestParam String password){
+    public ResponseEntity<?> login (@RequestBody UserRequest userRequest) {
         UserResponse Response = new UserResponse();
-//        Response.setMessage(password + "--" + email);
-//        return ResponseEntity.ok(Response);
+        ArrayList<UserList> userList = getUsers();
 
-        if (email.equals("") || password.equals("")){
-            Response.setMessage("Your Login Credentials are Empty");
-            return ResponseEntity.badRequest().body(Response);
-        } else {
-            Response.setMessage("Thank you for your Log In Credentials");
-            return ResponseEntity.ok(Response);
+        if (userList != null) {
+            for (UserList users : userList) {
+                if (userRequest.getEmail().equalsIgnoreCase(users.getEmail()) &&
+                        userRequest.getPassword().equalsIgnoreCase(users.getPassword())) {
+                    Response.setMessage("Login Is Success!");
+                    return ResponseEntity.ok(Response);
+                } else {
+                    Response.setMessage("Login Failed");
+                    return ResponseEntity.badRequest().body(Response);
+                }
+            }
         }
+        return null;
     }
-
+    
     @GetMapping ("getOneUser/{id}")
     public ResponseEntity<?> getOneUser (@PathVariable int id){
         return userService.getOneUser(id);
