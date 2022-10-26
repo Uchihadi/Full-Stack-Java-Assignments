@@ -1,5 +1,6 @@
 package com.springbootNurhadi.springsg.controller;
 
+import com.springbootNurhadi.springsg.Repo.UserRepo;
 import com.springbootNurhadi.springsg.Request.*;
 import com.springbootNurhadi.springsg.Response.GeneralResponse;
 import com.springbootNurhadi.springsg.Response.UserResponse;
@@ -15,25 +16,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// Create an API with 2 Parameters (Email, Password)
+// Email and Password Validation --> Return Success Response / Failure Response
 @RestController
-public class UserController { // Returning in JSON Format for all the classes declared below as well
-    @GetMapping("user") //Matches with http://localhost:8080/user
+public class UserController {
+
+    // [UserController] Autowired: Creates Object userService from class UserServices in the Spring Boot Application;
+    @Autowired
+    UserService userService;
+    UserRepo userRepo;
+    UserModel userModel;
+    UserList userList;
+
+    @GetMapping("user") // http://localhost:8090/user
     public ResponseEntity<?> getUser() {
-        GeneralResponse Response = new GeneralResponse("Hi, How Are You");
-//        Response.setMyName("User 1");
+        GeneralResponse Response = new GeneralResponse("Hi, How Are You?");
         return ResponseEntity.ok(Response); //Passing off the Object
     }
-    // ResponseEntity <GeneralResponse> ---> Only in GeneralResponse
-    // ResponseEntity <?> --> It can be anything
-    // ResponseEntity.ok() --> Success Response with 200 Status Codes
-    // ResponseEntity.badRequest().body() --> Failure Response with 400 Status Codes
 
-    @GetMapping("message") //Matches with http://localhost:8080/message
+
+    @GetMapping("message") // http://localhost:8090/message
     public ResponseEntity<?> getMessage() {
         GeneralResponse Response = new GeneralResponse("Hello World");
         Response.setMessage("This is My Message");
-//        HashMap<String, String> Obj = new HashMap<>(); // If it is a small Object then use HashMap
-//        Obj.put("User", "This is Users");
         return ResponseEntity.ok(Response); //Passing off the Object
 
     }
@@ -46,42 +51,6 @@ public class UserController { // Returning in JSON Format for all the classes de
         return ResponseEntity.ok(Response);
     }
 
-//    @PostMapping("userLogin")
-//    public ResponseEntity<?> userLogin (@RequestBody UserRequest userRequest){
-//        GeneralResponse Response = new GeneralResponse();
-//        if (userRequest.getEmail().equals("Admin@gmail.com")
-//                && userRequest.getPassword().equals("Admin")) {
-//            Response.setMessage("Correct Email & Password");
-//            return ResponseEntity.ok(Response); //Send 200 Status Code --> Approved
-//        } else {
-//            Response.setMessage("Please provide proper Email & Password");
-//            return ResponseEntity.badRequest().body(Response); // 400 Status Code (Reject)
-//        }
-//    }
-
-    @PostMapping("subtraction")
-    public ResponseEntity<?> subtraction (@RequestBody SubtractionRequest subtractionRequest){
-        int sub  = subtractionRequest.getSub1() - subtractionRequest.getSub2();
-        GeneralResponse Response = new GeneralResponse();
-        Response.setMessage("The result of subtraction between two numbers are:  "+sub);
-        return ResponseEntity.ok(Response);
-    }
-
-    @PostMapping("multiplication")
-    public ResponseEntity<?> multiplication (@RequestBody MultiplyRequest multiplyRequest) {
-        int multiply = multiplyRequest.getMulti1() * multiplyRequest.getMulti2();
-        GeneralResponse Response = new GeneralResponse();
-        Response.setMessage("The result of multiplication between two numbers are: " + multiply);
-        return ResponseEntity.ok(Response);
-    }
-
-    @PostMapping("division")
-    public ResponseEntity<?> division (@RequestBody DivisionRequest divisionRequest) {
-        int divide = divisionRequest.getDiv1() / divisionRequest.getDiv2();
-        GeneralResponse Response = new GeneralResponse();
-        Response.setMessage("The result of division between two numbers are: " + divide);
-        return ResponseEntity.ok(Response);
-    }
 
     @PostMapping("userLogin")
     public ResponseEntity<?> userLogin (@RequestBody UserRequest userRequest){
@@ -147,25 +116,6 @@ public class UserController { // Returning in JSON Format for all the classes de
         }
     }
 
-//    @GetMapping("usermap")
-//    public static HashMap <Integer, User> getUserMap() {
-//        // getUsersList()
-//        // Create an ArrayList with User (email, username, address)
-//        // Returns the User List as Response
-//
-//        ArrayList<User> userArrayList = getUserList();
-//        HashMap <Integer, User> usermap = new HashMap<>();
-//
-//        for (int i = 0; i < userArrayList.size(); i++) {
-//            usermap.put(i+1, userArrayList.get(i));
-//        }
-//
-//        if (usermap.size() > 0) {
-//            return usermap;
-//        } else {
-//            return null;
-//        }
-//    }
     @GetMapping("user/{user_id}")
     //GET Request --> localhost:8080/user/55 --> Returns: User ID is 55
        public ResponseEntity<?> getUser (@PathVariable Integer user_id){
@@ -201,23 +151,6 @@ public class UserController { // Returning in JSON Format for all the classes de
             return ResponseEntity.ok(Response);
         }
     }
-
-//    @PostMapping ("UserLogin")
-//    public ResponseEntity<?> userlogin (@RequestBody APILoginRequest apiLoginRequest) {
-//        GeneralResponse Response = new GeneralResponse();
-//
-//        try {
-//            UserModel user = userService.validateLogin (apiLoginRequest.getEmail(), apiLoginRequest.getPassword());
-//            return ResponseEntity.ok(user);
-//        } catch (Exception e) {
-//            Response.setMessage("The Login Credentials is Invalid");
-//            return ResponseEntity.badRequest().body(Response);
-//        }
-//    }
-    @Autowired
-    UserService userService;
-    // Creates Object userService from class UserServices in the Spring Boot Application; does not need to create Java way
-    // Can be achieved only in UserController File
 
     @GetMapping ("getOneUser/{id}")
     public ResponseEntity<?> getOneUser (@PathVariable int id){
