@@ -14,7 +14,7 @@ import java.util.List;
 // Clear Tokens during Logout
 
 @Repository
-public interface UserRepo extends JpaRepository<UserModel, Integer> {
+public interface UserRepo extends JpaRepository <UserModel, Integer> {
     // 1st Argument = Model, 2nd Argument = ID
     // User Repository to execute the User Model with the data type of Entity
     // Connection between Service Layer and the Model
@@ -25,9 +25,7 @@ public interface UserRepo extends JpaRepository<UserModel, Integer> {
 //    }
 
     @Query("select userModel from UserModel userModel where email = ?1 and password = ?2")
-    static List<User> getUserByEmailAndPassword(String email, String password) {
-        return null;
-    }
+    Optional<UserModel> getUserByEmailAndPassword (String email, String password);
 
     @Query("select userModel from UserModel userModel where email = ?1")
     Optional<UserModel> getUserByEmail (String email);

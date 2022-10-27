@@ -6,7 +6,6 @@ import com.springbootNurhadi.springsg.Request.UpdateReq;
 import com.springbootNurhadi.springsg.Request.UserRequest;
 import com.springbootNurhadi.springsg.Response.UserResponse;
 import com.springbootNurhadi.springsg.model.UserModel;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,38 +16,6 @@ public class UserService {
 
     @Autowired
     UserRepo userRepo;
-
-    public User validateLogin (String email, String password) {
-        List<User> user = UserRepo.getUserByEmailAndPassword(email, password);
-        return user.get(0);
-    }
-
-    public ArrayList<UserModel> getAllUsers() {
-        return (ArrayList<UserModel>) userRepo.findAll();
-    }
-
-    public ArrayList<String> getAllEmails() {
-        ArrayList<UserModel> users = (ArrayList<UserModel>) userRepo.findAll();
-        ArrayList<String> emails = new ArrayList<>();
-
-        for (UserModel user:users) {
-            emails.add(user.getEmail());
-        }
-
-        return emails;
-    }
-
-    public UserModel getUserByEmail(String email) {
-        if(!email.equals("")) {
-            Optional<UserModel> test = userRepo.getUserByEmail(email);
-
-            if (test.isPresent()) {
-                return test.get();
-            }
-        }
-
-        return null;
-    }
 
     public UserResponse register (UserRequest request) {
         UserResponse Response = new UserResponse();
@@ -92,10 +59,49 @@ public class UserService {
         return Response;
     }
 
-    public List<User> verifyEmailAndPassword (UserRequest request) {
-        List<User> test = UserRepo.getUserByEmailAndPassword(request.getEmail(), request.getPassword());
-        return test;
+    public UserResponse verifyEmailAndPassword (UserRequest userRequest) {
+        UserResponse Response = new UserResponse();
+        Optional<UserModel> Testing = userRepo.getUserByEmailAndPassword(userRequest.getEmail(), userRequest.getPassword());
+
+        if (Testing.isPresent()) {
+            Response.setUserModel(Testing.get());
+            Response.setMessage("User Logged In Successfully");
+        } else {
+            Response.setMessage("Unable to Log In, please check your credentials");
+        }
+        return Response;
     }
+
+    public ArrayList<UserModel> getAllUsers() {
+        return (ArrayList<UserModel>) userRepo.findAll();
+    }
+
+    public ArrayList<String> getAllEmails() {
+        ArrayList<UserModel> users = (ArrayList<UserModel>) userRepo.findAll();
+        ArrayList<String> emails = new ArrayList<>();
+
+        for (UserModel user:users) {
+            emails.add(user.getEmail());
+        }
+
+        return emails;
+    }
+
+    public UserModel getUserByEmail(String email) {
+        if(!email.equals("")) {
+            Optional<UserModel> test = userRepo.getUserByEmail(email);
+
+            if (test.isPresent()) {
+                return test.get();
+            }
+        }
+
+        return null;
+    }
+
+
+
+
 
     public boolean updateUser (UpdateReq request) {
         if (!request.getTarget().equals("")) {

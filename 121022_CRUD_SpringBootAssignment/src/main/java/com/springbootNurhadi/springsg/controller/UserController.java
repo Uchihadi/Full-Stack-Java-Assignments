@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 // 1) Register (Name, Email, Mobile, Address, Password) from React to Spring Boot
+// 2) Login with Email and Password from React to Spring Boot. If User exist, return User Details; else throw error
 @RestController
 public class UserController {
     @Autowired
@@ -29,19 +30,18 @@ public class UserController {
             return ResponseEntity.ok(Response.getUserModel());
         } else {
             UserResponse Res = new UserResponse();
-            Res.setMessage("User Failed to Register Successfully");
+            Res.setMessage("User Failed to Register");
             return ResponseEntity.badRequest().body(Res);
         }
     }
 
-    @PostMapping ("UserLogin")
+    @PostMapping ("UserLogin") // If Null, still returns as Response 200 but empty
     public ResponseEntity<?> userLogin (@RequestBody UserRequest userRequest) {
-        GeneralResponse Response = new GeneralResponse();
+        UserResponse Response = userService.verifyEmailAndPassword(userRequest);
 
-        if (userService.validateLogin(userRequest)) {
+        if (Response != null) {
             Response.setMessage("Welcome Back, Login is Successful");
-            Response.setUser(userService.getUserByEmail(userRequest.getEmail()));
-            return ResponseEntity.ok(Response);
+            return ResponseEntity.ok(Response.getUserModel());
         } else {
             Response.setMessage("Your Login is Unsuccessful, please check your Login credentials.");
             return ResponseEntity.badRequest().body(Response);
