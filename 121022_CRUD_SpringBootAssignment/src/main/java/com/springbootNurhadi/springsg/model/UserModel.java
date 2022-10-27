@@ -30,11 +30,11 @@ public class UserModel {
     @JsonIgnore
     String password;
 
-    public UserModel(Integer id, String name, String email, String password){
-        this.id = id;
+    public UserModel(String mobile, String email, String password, String address){
         this.email = email;
-        this.name = name;
         this.password = password;
+        this.mobile = mobile;
+        this.address = address;
     }
 
     public UserModel(String email) {

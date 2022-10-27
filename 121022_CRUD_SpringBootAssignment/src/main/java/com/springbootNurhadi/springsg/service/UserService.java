@@ -4,6 +4,7 @@ package com.springbootNurhadi.springsg.service;
 import com.springbootNurhadi.springsg.Repo.UserRepo;
 import com.springbootNurhadi.springsg.Request.UpdateReq;
 import com.springbootNurhadi.springsg.Request.UserRequest;
+import com.springbootNurhadi.springsg.Response.UserResponse;
 import com.springbootNurhadi.springsg.model.UserModel;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,34 +50,46 @@ public class UserService {
         return null;
     }
 
-    public boolean register (UserRequest request) {
+    public UserResponse register (UserRequest request) {
+        UserResponse Response = new UserResponse();
+
         if (request.getEmail().equals("")) {
-            return false;
+            Response.setMessage("Email Cannot be Empty");
+            return Response;
         } else if (userRepo.getUserByEmail(request.getEmail()).isPresent()) {
-            return false;
+            Response.setMessage("Email has already been registered!");
+            return Response;
         }
 
         if (request.getPassword().equals("")) {
-            return false;
+            Response.setMessage("Password Cannot be Empty");
+            return Response;
         }
 
         if (request.getMobile().equals("")) {
-            return false;
+            Response.setMessage("Mobile Number Cannot be Empty");
+            return Response;
         } else {
             try {
                 Integer.parseInt(request.getMobile());
             } catch (Exception e) {
-                return false;
+                Response.setMessage("The Mobile Number is Invalid");
+                return Response;
             }
         }
 
         if (request.getAddress().equals("")) {
-            return false;
+            Response.setMessage("Address Cannot be Empty");
+            return Response;
         }
 
-        UserModel userModel = new UserModel(request.getEmail());
+        UserModel userModel = new UserModel(request.getMobile(), request.getEmail(),
+                request.getPassword(), request.getAddress());
         userRepo.save(userModel);
-        return true;
+
+        Response.setUserModel(userModel);
+        Response.setMessage("User has been registered successfully!");
+        return Response;
     }
 
     public List<User> verifyEmailAndPassword (UserRequest request) {
@@ -144,11 +157,6 @@ public class UserService {
         return false;
     }
 
-//    public boolean userLogin (UserRequest request) {
-//        request.setToken(generateToken(request.getEmail()));
-//        return (verifyEmailAndPassword(request) && updateToken(request));
-//    }
-
     public boolean userLogout (UserRequest request) {
         request.setToken (null);
         return updateToken(request);
@@ -171,81 +179,6 @@ public class UserService {
         if (b) return true;
         else return false;
     }
-
-//    public HashMap<Integer, UserModel> UserGet() {
-//        HashMap<Integer, UserModel> userModelHashMap = new HashMap<>();
-//
-//        UserModel u1 = new UserModel(1, "John F Kennedy", "jfk13@gmail.com", "jfk@54");
-//        UserModel u2 = new UserModel(2, "Fidel Castro", "fcastrocuba@gmail.com", "fcastro60");
-//        UserModel u3 = new UserModel(3, "Nikita Khruschchev", "Khrushamerica@gmail.com", "NKVD");
-//        UserModel u4 = new UserModel(4, "Robert McNamara", "mcnamara@gmail.com", "rob44");
-//        UserModel u5 = new UserModel(5, "Allen Dulles", "allendulles@gmail.com", "adules22");
-//
-//        userModelHashMap.put(1, u1);
-//        userModelHashMap.put(2, u2);
-//        userModelHashMap.put(3, u3);
-//        userModelHashMap.put(4, u4);
-//        userModelHashMap.put(5, u5);
-//
-//        return userModelHashMap;
-//    }
-//
-//    public ResponseEntity<?> getOneUser(Integer id) {
-//        HashMap<Integer, UserModel> userModelHashMap = UserGet();
-//        UserResponse Response = new UserResponse();
-//
-//        // To find out if userHashMap size has some values
-//        if (id > userModelHashMap.size()) {
-//            Response.setMessage("User's Credentials are not found");
-//            return ResponseEntity.badRequest().body(Response);
-//        } else {
-//            UserModel user = userModelHashMap.get(id);
-//            Response.setId(user.getId());
-//            Response.setMessage("User: " + user.getId());
-//            Response.setName(user.getName());
-//            Response.setEmail(user.getEmail());
-//            return ResponseEntity.ok(Response);
-//        }
-//    }
-
-
-//    public boolean createUser (UserLoginRequest userLoginRequest) throws Exception {
-//        try {
-//            Optional<UserModel> userEmailExists = userRepo.getValidEmail(userLoginRequest.getEmail());
-//            if(userEmailExists.isPresent()) {
-//                throw new Exception("Email Exists");
-//            }
-//            UserModel userModel = new UserModel();
-//            userModel.setEmail(userLoginRequest.getEmail());
-//            userModel.setName(userLoginRequest.getName());
-//            userModel.setPassword(userLoginRequest.getPassword());
-//            userModel.setMobile(userLoginRequest.getMobile());
-//            userModel.setAddress(userLoginRequest.getAddress());
-//            userRepo.save(userModel);
-//            return true;
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            throw e;
-//        }
-//    }
-
-
-//    public void viewUser() throws Exception {
-//        return;
-//    }
-
-//    @Autowired
-//    UserRepo userRepo;
-//    public boolean createUser (LoginUserRequest loginUserRequest) throws Exception {
-//        try {
-//            Optional<UserModel> userEmailExist = userRepo.getValidEmail(loginUserRequest.getEmail());
-//            if(userEmailExist.isPresent()) {
-//                throw new Exception("Email has already existed!");
-//            }
-//
-//        }
-//    }
 }
 
 
