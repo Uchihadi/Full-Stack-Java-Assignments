@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8" />
+    <title>
+        Post API
+    </title>
+    <style>
+        .Server_Response {
+            border: 2px solid blue;
+            border-block-color: forestgreen;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+    </style>
+
+
+    <script type ="text/javascript">
+
+        function postAPI() {
+            var name = document.getElementById("EnterName").value;
+            let job = document.getElementById('Job').value;
+
+            let param = {
+                "name": name,
+                "job": job
+            }
+
+            if (name === "" || job === "") {
+                document.getElementById("Server_Response").innerHTML = "Validation Error! Please Input your value";
+                console.log("Validation Error! No Data Found")
+                return
+            }
+
+            fetch(
+                "https://reqres.in/api/users",  
+                {
+                    method: "POST",
+                    body: JSON.stringify(param), // Sending Data To Server as JSON Strings
+                    headers: {
+                        'Content-Type': 'application/json',//xml
+                        "token": "some token",
+                        "user_id": "1"
+                    },
+                }
+            ).then(res => res.json()) // RES.JSON() - Another Promise.RES.Text()
+                .then(res2 => {
+                    document.getElementById("Server_Response").innerHTML = JSON.stringify(res2); // Actual Response From Server
+                    console.log(JSON.stringify(res2));
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+
+        }
+
+    </script>
+</head>
+<body>
+    <div id="Server_Response"></div>
+    <input type="text" id="EnterName" placeholder="Enter Name" />
+    <input type="text" id="Job"   placeholder="Enter Job" />
+    
+    <button onclick="postAPI()"> Click to call POST API </button>
+</body>
+</html>

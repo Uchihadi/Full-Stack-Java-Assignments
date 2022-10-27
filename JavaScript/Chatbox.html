@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        #messagelist{
+            height: 250px;
+            overflow-y:auto;
+            margin: 5%;
+            color:green;
+        }
+
+        .border {
+            border: 2px solid blue;
+            border-block-color: forestgreen;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .message_input{
+            border: 2px solid green;
+            margin: 3%;
+        }
+
+        .message_input textarea {
+            height: 110px;
+            width: 99%;
+        }
+
+        .Username {
+            border: 2px solid red;
+            margin: 3%;
+        }
+
+        #username {
+            width: 99%;
+            font-display:auto;
+            font-style: normal;
+            color: darkblue;
+        }
+
+        #sendbutton {
+            float: right;
+            width: 30%;
+            padding: 1%;
+            color: white;
+            background-color: cornflowerblue;
+            font-size: 20px;
+            margin: 4% 2%;
+        }
+
+        .clear {
+            float: left;
+            width: 20%;
+            padding: 1%;
+            color: black;
+            background-color: aqua;
+            font-size: 20px;
+            margin: 3%;
+        }
+
+    </style>
+
+    <meta charset="utf-8" />
+    <title>
+        Chatboxes
+    </title>
+    
+    <script>
+
+    const chat_messages = [];
+        function addMessage() {
+
+            document.getElementById("messageinput").style.color = "magenta";
+
+            const chatMessage = document.getElementById("messageinput");
+            const userName = document.getElementById("username");
+            const messageList = document.getElementById("messagelist");
+
+
+            if (chatMessage.value === "" || userName.value === "") return; // If Inputs are empty, return to normal page
+
+            chat_messages.push({ name: userName.value, message: chatMessage.value }); // Adding messages to the chat, convert indexes to objects
+            messageList.innerHTML = "";
+
+            for ({ name, message } of chat_messages) {
+                messageList.innerHTML += '<div><span style="color:blue">' + name + ": " + '</span>' + message + '</div>';
+            }
+
+            console.log(chat_messages);
+
+            userName.value = "";
+            chatMessage.value = "";
+            chatMessage.focus();
+        }
+
+        // return document.getElementById("msginput").value = "";
+
+        function buttonCode() {
+            alert("Button code executed.");
+        }
+
+        
+
+</script>
+</head>
+<body>
+    <div class="border">
+        <div id="messagelist"></div>
+
+        <div class="Username">
+            <textarea name="" id="username" placeholder="Username"></textarea>
+
+
+        </div>
+
+        <div class="message_input">
+            <textarea name="" id="messageinput" placeholder="Enter your message.."></textarea>
+        </div>
+
+        <div>
+            <button id="sendbutton" onclick="addMessage()"> Send </button>
+        </div>
+
+
+    </div>
+</body>
+</html>

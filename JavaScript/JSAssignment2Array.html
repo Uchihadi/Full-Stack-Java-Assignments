@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+        val = "";
+        function arr_add(val) { // declare function
+            arr = ["one", "two", "three"]; // First 3 elements
+            for (let indx in arr) {
+                console.log(indx + "---" + arr[indx]);
+            }
+            console.log(arr[0]); //first element
+            console.log(arr);
+            arr.push("four");
+            console.log(arr);
+            arr.push("five");
+            console.log(arr);
+            arr.push("six");
+            console.log(arr);
+            arr.push("seven");
+            console.log(arr);
+        }
+
+    </script>
+    <title></title>
+</head>
+<body>
+    <script>
+        var arr = []; // Initialisation / Declaration of Array
+        arr_add(val);
+    </script>
+    <div>Great Job!</div>
+</body>
+</html>

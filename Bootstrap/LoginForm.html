@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        #borderline {
+            border: dashed;
+            border-block-color:blueviolet;
+            padding: 1%;
+            margin: 5px;
+            width: 1000px;
+        }
+
+        .row {
+            padding: 1%;
+            line-break:auto;
+        }
+
+        #option1 {
+            background-color: beige;
+        }
+
+        .option{
+            background-color:aquamarine;
+        }
+
+        #submit {
+            background-color: springgreen;
+        }
+
+        #reset {
+            background-color: indianred;
+        }
+
+        @media screen and (max-width: 1200px) {
+            h2 {
+                font-size: 10px;
+            }
+
+            p {
+                width: 100%;
+                font-size: 20px;
+            }
+
+            #borderline {
+                border-block-color: darkorange;
+                width: 700px;
+            }
+
+    </style>
+    <meta charset="utf-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          crossorigin="anonymous">
+    <title>
+        Login Form
+    </title>
+</head>
+<body>
+    <form>
+        <h2> Login Form </h2>
+        <div id="borderline">
+            <div class="row">
+                <div class="col">
+                    <label for="fname">Email: </label>
+                    <input type="text" placeholder ="Email" class="form-control" id="email" name="email">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="lName">Password: </label>
+                    <input type="password" placeholder="Password" class="form-control" id="password" name="password">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-4" >
+                    <input type="submit" id="submit" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col">
+            <a href="https://support.google.com/accounts/answer/41078?hl=en&co=GENIE.Platform%3DAndroid">Forgot your Password?</a>
+                    </div>
+            </div>
+        </div>    
+</form>
+</body>
+</html>

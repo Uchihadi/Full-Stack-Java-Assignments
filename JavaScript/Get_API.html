@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8" />
+    <title>
+        Get API
+    </title>
+    <style>
+
+    </style>
+
+
+    <script type ="text/javascript">
+
+        function getAPI() {
+            let pageNo = document.getElementById("page_no");
+            let page_No = pageNo.value;
+
+            if (page_No === "") {
+                document.getElementById("Server_Response").innerHTML = "No Data Found";
+                console.log("No Data Found");
+                return
+            }
+
+            fetch(
+                "https://reqres.in/api/users?page="+page_No,
+                {
+                    method: "GET"
+                }
+            ).then(res => res.json()) // RES.JSON() - Another Promis.Res.Text()
+                .then(res2 => {
+                    document.getElementById("Server_Response").innerHTML = JSON.stringify(res2); //Inject Response into Div
+                    console.log(JSON.stringify(res2));
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+
+        }
+
+    </script>
+</head>
+<body>
+    <div id="Server_Response"></div>
+    <input type="text" id="page_no" placeholder="Enter Page No." />
+
+    <button onclick="getAPI()"> Click to send Data </button>
+
+</body>
+</html>

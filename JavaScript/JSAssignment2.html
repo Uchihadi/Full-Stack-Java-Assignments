@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+        function obj_method() {
+            let num1 = [
+                {
+                    "1": "One",
+                },
+                {
+                    "2": "Two",
+                },
+                {
+                    "3": "Three",
+                },
+                {
+                    "4": "Four",
+                },
+                {
+                    "5": "Five",
+                },
+                {
+                    "6": "Six",
+                },
+            ];
+
+            let num2 = {
+                "7": "Seven",
+                "8": "Eight",
+                "9": "Nine",
+                "10": "Ten",
+                "11": "Eleven",
+            };
+
+            let num3 = {
+                "12": "Twelve",
+                "13": "Thirteen",
+                "14": "Fourteen",
+            }
+
+            for (let obj in num1) {
+                console.log(num1[obj])
+            }
+
+            for (let key in num2) {
+                console.log(key + '---' + num2[key]);
+            }
+
+            console.log(num3[12]);
+            console.log(num3[13]);
+            console.log(num3[14]);   
+        }
+   
+    </script>
+    <title></title>
+</head>
+<body>
+        <script>
+            var obj = obj_method();
+        </script>
+    <div>Great Job!</div>
+</body>
+</html>
