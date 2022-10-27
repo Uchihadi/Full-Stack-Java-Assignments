@@ -15,7 +15,8 @@ import java.util.ArrayList;
 
 // 1) Register (Name, Email, Mobile, Address, Password) from React to Spring Boot
 // 2) Login with Email and Password from React to Spring Boot. If User exist, return User Details; else throw error
-// 3)
+// 3) Update User from React
+// 4) Delete User from React
 @RestController
 public class UserController {
     @Autowired
@@ -48,46 +49,30 @@ public class UserController {
         }
     }
     @PostMapping ("Update")
-    public ResponseEntity<?> userUpdate (@RequestBody UpdateReq updateReq) {
-        GeneralResponse Response = userService.updateUser(updateReq);
+    public ResponseEntity<?> userUpdate (@RequestBody UpdateReq updateRequest) {
+        UserResponse Response = userService.updateUser(updateRequest);
 
-        if (userService.validateUpdate(updateReq)) {
-            Response.setMessage("You have successfully updated your details");
-            Response.setUser(userService.getUserByEmail(updateReq.getEmail()));
-            return ResponseEntity.ok(Response);
+        if (Response != null) {
+            Response.setMessage("User Updated Successfully");
+            return ResponseEntity.ok(Response.getUserModel());
         } else {
-            Response.setMessage("Your credential updates are unsuccessful");
-            return ResponseEntity.badRequest().body(Response);
+            UserResponse Res = new UserResponse();
+            Res.setMessage("User Failed to Update");
+            return ResponseEntity.badRequest().body(Res);
         }
     }
-
-    @PostMapping ("UserLogout")
-    public ResponseEntity<?> userLogout (@RequestBody UserRequest userRequest) {
-        GeneralResponse Response = new GeneralResponse();
-
-        if (userService.validateLogout(userRequest)) {
-            Response.setMessage("You have successfully logged out!");
-            Response.setUser(userService.getUserByEmail(userRequest.getEmail()));
-            return ResponseEntity.ok(Response);
-        } else {
-            Response.setMessage("Your Logout is not successful");
-            return ResponseEntity.badRequest().body(Response);
-        }
-    }
-
-
 
     @PostMapping ("Delete")
-    public ResponseEntity<?> userDelete (@RequestBody UserRequest userRequest) {
-        GeneralResponse Response = new GeneralResponse();
+    public ResponseEntity<?> userDelete (@RequestBody UpdateReq updateRequest) {
+        UserResponse Response = userService.deleteUser(updateRequest);
 
-        if (userService.validateDelete(userRequest)) {
-            Response.setMessage("You have successfully deleted your credentials");
-            Response.setUser(userService.getUserByEmail(userRequest.getEmail()));
-            return ResponseEntity.ok(Response);
+        if (Response != null) {
+            Response.setMessage("User Deleted Successfully");
+            return ResponseEntity.ok(Response.getUserModel());
         } else {
-            Response.setMessage("Your Credentials are Unsuccessful");
-            return ResponseEntity.badRequest().body(Response);
+            UserResponse Res = new UserResponse();
+            Res.setMessage("User Failed to Delete");
+            return ResponseEntity.badRequest().body(Res);
         }
     }
 }

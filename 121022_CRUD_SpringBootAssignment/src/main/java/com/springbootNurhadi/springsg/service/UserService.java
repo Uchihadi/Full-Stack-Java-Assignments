@@ -72,115 +72,68 @@ public class UserService {
         return Response;
     }
 
-    public boolean validateUpdate(UpdateReq updateReq) {
-        boolean b = false;
-        if (b) return true;
-        else return false;
-    }
+    public UserResponse updateUser (UpdateReq updateRequest) {
+        UserResponse Response = new UserResponse();
 
-    public boolean updateUser (UpdateReq request) {
-        if (!request.getTarget().equals("")) {
-            UserModel UserOld = getUserByEmail(request.getEmail());
+        if (updateRequest.getTarget().equals("")) {
+            Response.setMessage("No User has been Selected");
+        } else {
+            Optional<UserModel> Test = userRepo.getUserByEmail(updateRequest.getTarget());
 
-            if (UserOld != null) {
-                UserModel UserNew = UserOld;
+            if (!Test.isPresent()) {
+                Response.setMessage("User is not Present");
+            } else {
+                UserModel userModel = Test.get();
 
-                if (!request.getEmail().equals("")){
-                    UserNew = new UserModel(request.getEmail());
+                if (!updateRequest.getEmail().equals("")) {
+                    userModel = new UserModel(updateRequest.getEmail(), userModel.getPassword(), userModel.getMobile(), userModel.getAddress());
                 }
 
-                if (!request.getPassword().equals("")) {
-                    UserNew = new UserModel(request.getPassword());
+                if (!updateRequest.getPassword().equals("")) {
+                    userModel.setPassword(updateRequest.getPassword());
                 }
 
-                if (!request.getMobile().equals("")) {
+                if (!updateRequest.getMobile().equals("")) {
                     try {
-                        Integer.parseInt(request.getPassword());
+                        Integer.parseInt(updateRequest.getMobile());
                     } catch (Exception e) {
-                        return false;
+                        Response.setMessage("Mobile Number is Invalid");
+                        return Response;
                     }
-                    UserNew.setMobile(request.getMobile());
+                    userModel.setMobile(updateRequest.getMobile());
                 }
 
-                if (!request.getAddress().equals("")) {
-                    UserNew.setAddress(request.getAddress());
+                if (!updateRequest.getAddress().equals("")) {
+                    userModel.setAddress(updateRequest.getAddress());
                 }
 
-                userRepo.save(UserNew);
-                userRepo.delete(UserOld);
-                return true;
+                userRepo.delete(Test.get());
+                userRepo.save(userModel);
+                Response.setUserModel(userModel);
+                Response.setMessage("User Updated Successfully!");
             }
         }
-
-        return false;
-    }
-    public ArrayList<UserModel> getAllUsers() {
-        return (ArrayList<UserModel>) userRepo.findAll();
+        return Response;
     }
 
-    public ArrayList<String> getAllEmails() {
-        ArrayList<UserModel> users = (ArrayList<UserModel>) userRepo.findAll();
-        ArrayList<String> emails = new ArrayList<>();
+    public UserResponse deleteUser (UpdateReq updateRequest) {
+        UserResponse Response = new UserResponse();
 
-        for (UserModel user:users) {
-            emails.add(user.getEmail());
-        }
+        if (updateRequest.getEmail().equals("")) {
+            Response.setMessage("No User has been selected");
+        } else {
+            Optional<UserModel> Test = userRepo.getUserByEmail(updateRequest.getEmail());
 
-        return emails;
-    }
-
-    public UserModel getUserByEmail(String email) {
-        if(!email.equals("")) {
-            Optional<UserModel> test = userRepo.getUserByEmail(email);
-
-            if (test.isPresent()) {
-                return test.get();
+            if (!Test.isPresent()) {
+                return new UserResponse("User Does Not Exist");
+            } else {
+                userRepo.delete(Test.get());
+                userRepo.save(Test.get());
+                Response.setMessage("User Deleted Successfully!");
             }
         }
-
-        return null;
+        return Response;
     }
-
-    public boolean validateToken (UserRequest userRequest) throws Exception {
-        UserModel userModel = getUserByEmail(userRequest.getEmail());
-        if (userModel != null) {
-            return userModel.getToken().equals(userRequest.getToken());
-        }
-        return false;
-    }
-
-    private String generateToken (String email) {
-        String emailEncoded = Arrays.toString(Base64.getEncoder().encode(email.getBytes()));
-        return emailEncoded + System.currentTimeMillis();
-    }
-
-    private boolean updateToken (UserRequest request) {
-        UserModel userModel = getUserByEmail(request.getEmail());
-        if (userModel != null) {
-            userModel.setToken (request.getToken());
-            userRepo.save(userModel);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean userLogout (UserRequest request) {
-        request.setToken (null);
-        return updateToken(request);
-    }
-
-    public boolean validateLogout(UserRequest userRequest) {
-        return false;
-    }
-
-    public boolean validateDelete(UserRequest userRequest) {
-    return true;
-    }
-
-    public boolean validateLogin(UserRequest userRequest) {
-    return true;
-    }
-
 
 }
 

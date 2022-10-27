@@ -17,4 +17,8 @@ public class UserResponse {
     String Message;
 
     UserModel userModel = null;
+
+    public UserResponse(String message) {
+
+    }
 }
