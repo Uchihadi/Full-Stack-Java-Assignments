@@ -12,6 +12,7 @@ import lombok.Setter;
 public class UserRequest {
     String email;
     String password;
+    String name;
     String address;
     String mobile;
     String token;

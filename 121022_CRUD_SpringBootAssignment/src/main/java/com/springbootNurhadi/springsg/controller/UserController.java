@@ -15,11 +15,11 @@ import java.util.ArrayList;
 
 // 1) Register (Name, Email, Mobile, Address, Password) from React to Spring Boot
 // 2) Login with Email and Password from React to Spring Boot. If User exist, return User Details; else throw error
+// 3)
 @RestController
 public class UserController {
     @Autowired
     UserService userService;
-
 
     @PostMapping("Register")
     public ResponseEntity<?> register(@RequestBody UserRequest userRequest) {
@@ -47,6 +47,19 @@ public class UserController {
             return ResponseEntity.badRequest().body(Response);
         }
     }
+    @PostMapping ("Update")
+    public ResponseEntity<?> userUpdate (@RequestBody UpdateReq updateReq) {
+        GeneralResponse Response = userService.updateUser(updateReq);
+
+        if (userService.validateUpdate(updateReq)) {
+            Response.setMessage("You have successfully updated your details");
+            Response.setUser(userService.getUserByEmail(updateReq.getEmail()));
+            return ResponseEntity.ok(Response);
+        } else {
+            Response.setMessage("Your credential updates are unsuccessful");
+            return ResponseEntity.badRequest().body(Response);
+        }
+    }
 
     @PostMapping ("UserLogout")
     public ResponseEntity<?> userLogout (@RequestBody UserRequest userRequest) {
@@ -62,19 +75,7 @@ public class UserController {
         }
     }
 
-    @PostMapping ("Update")
-    public ResponseEntity<?> userUpdate (@RequestBody UpdateReq updateReq) {
-        GeneralResponse Response = new GeneralResponse();
 
-        if (userService.validateUpdate(updateReq)) {
-            Response.setMessage("You have successfully updated your details");
-            Response.setUser(userService.getUserByEmail(updateReq.getEmail()));
-            return ResponseEntity.ok(Response);
-        } else {
-            Response.setMessage("Your credential updates are unsuccessful");
-            return ResponseEntity.badRequest().body(Response);
-        }
-    }
 
     @PostMapping ("Delete")
     public ResponseEntity<?> userDelete (@RequestBody UserRequest userRequest) {

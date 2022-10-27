@@ -72,36 +72,11 @@ public class UserService {
         return Response;
     }
 
-    public ArrayList<UserModel> getAllUsers() {
-        return (ArrayList<UserModel>) userRepo.findAll();
+    public boolean validateUpdate(UpdateReq updateReq) {
+        boolean b = false;
+        if (b) return true;
+        else return false;
     }
-
-    public ArrayList<String> getAllEmails() {
-        ArrayList<UserModel> users = (ArrayList<UserModel>) userRepo.findAll();
-        ArrayList<String> emails = new ArrayList<>();
-
-        for (UserModel user:users) {
-            emails.add(user.getEmail());
-        }
-
-        return emails;
-    }
-
-    public UserModel getUserByEmail(String email) {
-        if(!email.equals("")) {
-            Optional<UserModel> test = userRepo.getUserByEmail(email);
-
-            if (test.isPresent()) {
-                return test.get();
-            }
-        }
-
-        return null;
-    }
-
-
-
-
 
     public boolean updateUser (UpdateReq request) {
         if (!request.getTarget().equals("")) {
@@ -138,6 +113,32 @@ public class UserService {
         }
 
         return false;
+    }
+    public ArrayList<UserModel> getAllUsers() {
+        return (ArrayList<UserModel>) userRepo.findAll();
+    }
+
+    public ArrayList<String> getAllEmails() {
+        ArrayList<UserModel> users = (ArrayList<UserModel>) userRepo.findAll();
+        ArrayList<String> emails = new ArrayList<>();
+
+        for (UserModel user:users) {
+            emails.add(user.getEmail());
+        }
+
+        return emails;
+    }
+
+    public UserModel getUserByEmail(String email) {
+        if(!email.equals("")) {
+            Optional<UserModel> test = userRepo.getUserByEmail(email);
+
+            if (test.isPresent()) {
+                return test.get();
+            }
+        }
+
+        return null;
     }
 
     public boolean validateToken (UserRequest userRequest) throws Exception {
@@ -180,11 +181,7 @@ public class UserService {
     return true;
     }
 
-    public boolean validateUpdate(UpdateReq updateReq) {
-        boolean b = false;
-        if (b) return true;
-        else return false;
-    }
+
 }
 
 
