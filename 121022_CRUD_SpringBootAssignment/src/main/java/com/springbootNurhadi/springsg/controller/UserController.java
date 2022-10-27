@@ -15,6 +15,11 @@ import java.util.ArrayList;
 // 1) Register (Name, Email, Mobile, Address, Password) from React to Spring
 @RestController
 public class UserController {
+    @Autowired
+    UserService userService;
+    UserRequest userRequest;
+    UserRepo userRepo;
+
     @GetMapping("user") //Matches with http://localhost:8080/user
     public ResponseEntity<?> getUser() {
         GeneralResponse Response = new GeneralResponse("Hi, How Are You");
@@ -34,23 +39,6 @@ public class UserController {
         // Obj.put("User", "This is Users");
         return ResponseEntity.ok(Response); //Passing off the Object
     }
-
-    @PostMapping ("UserLogin")
-    public ResponseEntity<?> userLogin (@RequestBody APILoginRequest apiLoginRequest) {
-        System.out.println(apiLoginRequest);
-
-        try {
-            User user = userService.validateLogin (apiLoginRequest.getEmail(), apiLoginRequest.getPassword());
-            return ResponseEntity.ok(user);
-        } catch (Exception e) {
-            GeneralResponse Response = new GeneralResponse();
-            Response.setMessage(e.getMessage());
-            return ResponseEntity.badRequest().body(Response);
-        }
-    }
-    @Autowired
-    UserService userService;
-
     @PostMapping("Register")
     public ResponseEntity<?> register(@RequestBody UserRequest userRequest) {
         GeneralResponse Response = new GeneralResponse();
@@ -64,6 +52,21 @@ public class UserController {
             return ResponseEntity.badRequest().body(Response);
         }
     }
+//    @PostMapping ("UserLogin")
+//    public ResponseEntity<?> userLogin (@RequestBody APILoginRequest apiLoginRequest) {
+//        System.out.println(apiLoginRequest);
+//
+//        try {
+//            User user = userService.validateLogin (apiLoginRequest.getEmail(), apiLoginRequest.getPassword());
+//            return ResponseEntity.ok(user);
+//        } catch (Exception e) {
+//            GeneralResponse Response = new GeneralResponse();
+//            Response.setMessage(e.getMessage());
+//            return ResponseEntity.badRequest().body(Response);
+//        }
+//    }
+
+
 
     @PostMapping ("UserLogin")
     public ResponseEntity<?> userLogin (@RequestBody UserRequest userRequest) {
@@ -120,10 +123,6 @@ public class UserController {
             return ResponseEntity.badRequest().body(Response);
         }
     }
-
-    @Autowired
-    UserRepo userRepo;
-
     @GetMapping
     public ResponseEntity<?> getAllUsers() {
         ArrayList<UserModel> users = (ArrayList<UserModel>) userRepo.findAll();

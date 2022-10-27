@@ -1,21 +1,18 @@
 package com.springbootNurhadi.springsg.Request;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
-
 public class UpdateReq {
-    String target = null;
-    String email = null;
-    String password = null;
-    String mobile = null;
-    String address = null;
+    String target;
+    String email;
+    String password;
+    String mobile;
+    String address;
 
     public UpdateReq(String target){
         this.target = target;
