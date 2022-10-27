@@ -38,10 +38,10 @@
 
   <p align="center">
     GECO Asia September / October Full Stack Java Development Training Programme
-<!--     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+<!--      <br />
+    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>  -->
     <br />
-    <br /> -->
+    <br /> 
     <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
     ·
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
