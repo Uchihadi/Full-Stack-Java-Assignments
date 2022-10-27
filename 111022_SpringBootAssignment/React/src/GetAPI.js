@@ -18,13 +18,22 @@ function GetAPI(){
         })
     }
 
+    const postAPIResponse = (pageNo) => {
+        fetch("https://reqres.in/api/users?page=" +pageNo)
+        .then(res=>res.json())
+        .then(res2=>{
+            setUserList(res2['data']); //Data exists in Server Response
+            console.log(res2);
+        })
+    }
+
     const showPerson = (obj) => {
 
     }
 
     return(
         <div>
-            <Header/>
+            <Header CurrentMenu='GetAPI'/>
             <h1> Get API </h1>
 
             <div>
@@ -46,21 +55,13 @@ function GetAPI(){
                 {
                     UserList && UserList.map((userObj, idx) => {
                         return <div onClick={()=>showPerson(userObj)}
-                        key = {idx} > {userObj.first_name} </div>
+                        key = {idx} > {userObj.first_name} <img src = {userObj.avatar}></img> </div>
                     })
                     
                 }
             </div>
             </div>
-            <div>
-                {
-                UserList.map((userObj, idx)=>{
-                    return <div key = {idx}> 
-                    <img src = {userObj.avatar}></img>
-                    </div>
-                })
-                }          
-            </div> 
+            
             <Footer/>
         </div>
     )

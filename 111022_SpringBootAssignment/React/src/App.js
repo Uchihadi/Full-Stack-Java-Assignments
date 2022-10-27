@@ -1,14 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
-import PostAPIReact from './PostAPIReact';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Contact from './Contact';
+import GetAPI from './GetAPI';
 import Conditional from './Conditional';
 import UserDetails from './UserDetails';
 import Login from './Login';
-import GetAPI from './GetAPI';
-import { useState } from 'react';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
+import About from './About';
+import PostAPI from './PostAPI';
 
 
 
@@ -19,24 +17,23 @@ const App = () => {
     
     <Router>
       <Routes>
-        <Route path = "/PostAPIReact" element = {<PostAPIReact/>}/>
+        <Route path = "/Contact" element = {<Contact/>}/>
         <Route path = "/GetAPI" element = {<GetAPI/>}/>
         <Route path = "/Conditional" element = {<Conditional/>}/>
         <Route path = "/UserDetails" element = {<UserDetails/>}/>
         <Route path = "/Login" element = {<Login/>}/>
+        <Route path = "/PostAPI" element = {<PostAPI/>}/>
 
-        
     {/* Route path is to connect the URL to the end */}
     
     {/* Below on line 26, it will bring you to Home page as you start the react application */}
-    <Route path = "/" element = {<PostAPIReact/>}/>
-    {/* <Route path = "/" element = {<About/>}/> */}
+    <Route path = "/" element = {<About/>}/>
     </Routes>
  
     </Router>
-
+    
+    
     </>
-   
   );
 }
 

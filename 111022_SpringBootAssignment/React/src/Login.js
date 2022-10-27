@@ -16,10 +16,12 @@ function Login() {
             password: password,
         }
 
-        fetch("http://localhost:8080/userLoginParam", {
+        fetch("http://localhost:8090/userLogin", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                // "email": "email",
+                // "password": "password"
             },
             body: JSON.stringify(param)
         })
