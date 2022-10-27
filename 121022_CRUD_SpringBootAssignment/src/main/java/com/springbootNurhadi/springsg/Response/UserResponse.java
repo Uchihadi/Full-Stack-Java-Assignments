@@ -1,5 +1,10 @@
 package com.springbootNurhadi.springsg.Response;
+import lombok.*;
 
+//@Getter
+//@Setter
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class UserResponse {
 
     private String email;

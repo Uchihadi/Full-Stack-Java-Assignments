@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
+// 1) Register (Name, Email, Mobile, Address, Password) from React to Spring
 @RestController
-public class UserController { // Returning in JSON Format for all the classes declared below as well
+public class UserController {
     @GetMapping("user") //Matches with http://localhost:8080/user
     public ResponseEntity<?> getUser() {
         GeneralResponse Response = new GeneralResponse("Hi, How Are You");
