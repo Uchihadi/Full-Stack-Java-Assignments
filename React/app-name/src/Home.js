@@ -11,7 +11,6 @@ import { useEffect, useState } from "react"; //useState comes from the React Lib
 
 // HTML to React: React State --> useState();
 // 1) const [var_name, setMethod] = useState();
-
 // 2) Create Text box in HTML with attribute onChange ={(e) => setMethod(e.target.value)}
 // 3) Create an arrowFunction with argument
 // 4) Const inputFn = (e) => {
@@ -58,7 +57,6 @@ function Home() {
 
     // Error function Syntax () => {}; Functional Component
     // Constant --> React; Function --> Core JavaScript without React
-    // 
 
     const GetAPIResponse = (page_no) => {
         fetch ("https://reqres.in/api/users?page=" +page_no) //Fetch Method and parse it as an argument (Argument can be any)
