@@ -1,7 +1,7 @@
 import Footer from "./Footer";
 import Header from "./Header";
 import './App.css'
-import { useState } from "react"; //useState comes from the React Library
+import { useEffect, useState } from "react"; //useState comes from the React Library
 
 // Import React State --> If changes happens in variable or input components --> Auto updates the Variable
 // You would have to create connections between the function and button clicked
@@ -24,10 +24,30 @@ function Home() {
     const [password, setPassword]  = useState(""); //Default value is Empty
     const [mobile, setMobile]  = useState(""); //Default value is Empty
     const [userList, setUserList] = useState([]); // Declaring as an Empty Array to define the map for the GetAPIResponse
+    
     // If useState() you will be iterating on an undefined map which will display as unknown
     let name = "This is a Variable";
     // When we want to update the React UI dynamically, we need state variables; Connection between the UI and the React Framework
     
+    // setTimeout(function(), seconds)
+    // Below Method will run the Function in 1 seconds
+    useEffect(() => {
+        GetAPIResponse(1)
+    }, [] // empty array can only be called one time during the Page Load!
+    ) // Empty Array cannot be changed, hence it can only be called only once during the Page Loading
+  
+    // Below useEffect will call out when the email has been changed
+    useEffect(() => {
+        console.log("Email is Changing")
+    }, [email, password]
+    )
+
+    // Below useEffect will call out when the password has been changed
+    useEffect(() => {
+        console.log("Password is Changing")
+    }, [password]
+    )
+
     let peopleList = [
         {"name": "Alex", "age": 26},
         {"name": "Benjamin", "age": 29},
