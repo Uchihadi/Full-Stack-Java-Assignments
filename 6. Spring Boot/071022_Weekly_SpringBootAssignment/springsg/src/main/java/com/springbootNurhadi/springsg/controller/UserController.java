@@ -18,7 +18,6 @@ public class UserController { // Returning in JSON Format for all the classes de
     @GetMapping("user") //Matches with http://localhost:8080/user
     public ResponseEntity<?> getUser() {
         GeneralResponse Response = new GeneralResponse("Hi, How Are You");
-//        Response.setMyName("User 1");
         return ResponseEntity.ok(Response); //Passing off the Object
     }
     // ResponseEntity <GeneralResponse> ---> Only in GeneralResponse
@@ -43,19 +42,6 @@ public class UserController { // Returning in JSON Format for all the classes de
         Response.setMessage("The result of addition between two numbers are: "+plus);
         return ResponseEntity.ok(Response);
     }
-
-//    @PostMapping("userLogin")
-//    public ResponseEntity<?> userLogin (@RequestBody UserRequest userRequest){
-//        GeneralResponse Response = new GeneralResponse();
-//        if (userRequest.getEmail().equals("Admin@gmail.com")
-//                && userRequest.getPassword().equals("Admin")) {
-//            Response.setMessage("Correct Email & Password");
-//            return ResponseEntity.ok(Response); //Send 200 Status Code --> Approved
-//        } else {
-//            Response.setMessage("Please provide proper Email & Password");
-//            return ResponseEntity.badRequest().body(Response); // 400 Status Code (Reject)
-//        }
-//    }
 
     @PostMapping("subtraction")
     public ResponseEntity<?> subtraction (@RequestBody SubtractionRequest subtractionRequest){
