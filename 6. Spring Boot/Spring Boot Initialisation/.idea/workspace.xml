@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d15558c-3ebc-4157-9206-93ea80d7f7b1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Spring Boot Initialisation/.idea/Spring Boot Initialisation.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Spring Boot Initialisation/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Spring Boot Initialisation/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Spring Boot Initialisation/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Spring Boot Initialisation/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Spring Boot Initialisation.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Spring Boot/.idea/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Spring Boot/.idea/compiler.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Spring Boot/.idea/encodings.xml" afterDir="false" />
@@ -148,10 +148,10 @@
       <change afterPath="$PROJECT_DIR$/../Spring Boot/springsg/target/classes/com/springbootNurhadi/springsg/model/UserModel.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Spring Boot/springsg/target/classes/com/springbootNurhadi/springsg/service/UserService.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Spring Boot/springsg/target/classes/static/Users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Spring Boot Initialisation.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../071022_Weekly_SpringBootAssignment/.idea/Spring Boot Initialisation.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../071022_Weekly_SpringBootAssignment/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../071022_Weekly_SpringBootAssignment/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../071022_Weekly_SpringBootAssignment/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../071022_Weekly_SpringBootAssignment/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../071022_Weekly_SpringBootAssignment/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../111022_SpringBootAssignment/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../111022_SpringBootAssignment/.idea/compiler.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../111022_SpringBootAssignment/.idea/encodings.xml" beforeDir="false" />
@@ -318,36 +318,9 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Hadi-PC/OneDrive/Documents/GitHub/Java-Assignments/6. Spring Boot/071022_Weekly_SpringBootAssignment&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Hadi-PC/OneDrive/Documents/GitHub/Java-Assignments/6. Spring Boot/Spring Boot Initialisation&quot;
   }
 }</component>
-  <component name="RunManager">
-    <configuration name="SpringsgApplication" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.springbootNurhadi.springsg.SpringsgApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.springbootNurhadi.springsg.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Spring Boot Initialisation" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Spring Boot Initialisation" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

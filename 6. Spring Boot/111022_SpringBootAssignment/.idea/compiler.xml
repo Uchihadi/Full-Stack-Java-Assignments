@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="week6day2" />
         <module name="111022_SpringBootAssignment" />
+        <module name="Spring Boot" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="111022_SpringBootAssignment" options="-parameters" />
+      <module name="Spring Boot" options="-parameters" />
       <module name="week6day2" options="-parameters" />
     </option>
   </component>
